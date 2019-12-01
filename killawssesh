@@ -1,6 +1,6 @@
 #!/bin/bash
 
-user=thinclientuser
+user=$(aws iam get-user | grep -Po '"UserName": *\K"[^"]*"' | tr -d '"')
 
 echo "Killing console session"
 aws iam delete-login-profile --user-name $user
