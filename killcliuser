@@ -4,5 +4,6 @@
 user=$(aws iam get-user | grep -Po '"UserName": *\K"[^"]*"' | tr -d '"')
 accesskey=$(aws iam list-access-keys --user-name $user | grep -Po '"AccessKeyId": *\K"[^"]*"' | tr -d '"')
 
+echo -n "removing user access key: "
 echo $accesskey
-# aws iam delete-access-key --access-key $accesskey --user-name $user
+aws iam delete-access-key --access-key $accesskey --user-name $user
