@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# You could treat these user keys as OTP, delete them after user
 user=$(aws iam get-user | grep -Po '"UserName": *\K"[^"]*"' | tr -d '"')
+accesskey=$(aws iam list-access-keys --user-name $user | grep -Po '"AccessKeyId": *\K"[^"]*"' | tr -d '"')
 
-aws iam delete-access-key $user
+echo $accesskey
+# aws iam delete-access-key --access-key $accesskey --user-name $user
