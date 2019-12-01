@@ -40,6 +40,7 @@ I don't like bothering with 2FA for this sort of thing (just hobby coding and a 
 [killawssesh](./killawssesh) uses `aws delete-login-profile` to remove the aws console profile from the cli key user. 
 
 ## Kill CLI User
+[killcliuser](./killcliuser) invalidates the CLI key on AWS
 
 ## AWS Console
 [awsconsole](./awsconsole) will launch the console with the accountid using `aws sts get-caller-identity`
