@@ -37,10 +37,14 @@ I don't like bothering with 2FA for this sort of thing (just hobby coding and a 
 [newawssesh](./newawssesh) uses `aws iam  create-login-profile` to issue a new password for the cli key users aws console. 
 
 ## Kill AWS Session
-[killawssesh](./killawssesh) uses `aws delete-login-profile` to remove the aws console profile from the cli key user. 
+[killawssesh](./killawssesh) uses `aws iam delete-login-profile` to remove the aws console profile from the cli key user. 
 
 ## Kill CLI User
-[killcliuser](./killcliuser) invalidates the CLI key on AWS
+[killcliuser](./killcliuser) users `aws iam delete-access-key` to invalidate the CLI key on AWS making what's in the local config file irrelevant. I have a list of One-Time-Pad style key pairs so I can invalidate a few times.
 
 ## AWS Console
 [awsconsole](./awsconsole) will launch the console with the accountid using `aws sts get-caller-identity`
+
+
+## Vision
+Ideally these would work without the AWS cli, perhaps just some unix utilities, a small python program, or some hand crafted curl requests. I'll study the AWS IAM api and get back to it, but I want something quick and dirty to test the flow.
