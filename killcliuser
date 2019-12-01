@@ -1,0 +1,5 @@
+#!/bin/bash
+
+user=$(aws iam get-user | grep -Po '"UserName": *\K"[^"]*"' | tr -d '"')
+
+aws iam delete-access-key $user
