@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# implicate user:
+# aws iam get-user
+# get username from config, extract field from json, trim quotes
+# aws iam get-user | grep -Po '"UserName": *\K"[^"]*"' | tr -d '"'
+
+user=$(aws iam get-user | grep -Po '"UserName": *\K"[^"]*"' | tr -d '"')
+password=$(openssl rand -base64 14)
+echo -n "Generating temporary console password... "
+
+echo "Removing pervious profile"
+aws iam delete-login-profile --user-name $user
+
+echo "Creating new console profile for user: "
+echo $user
+aws iam create-login-profile --user-name $user --password "$password"
+
+echo $password
+
+
+# AWS console login page
+# firefox https://072822149096.signin.aws.amazon.com/console/
+
+# Variables to find info for logged in user, for flow based on user credentials
+# AWS_CONFIG_FILE
+# AWS_SHARED_CREDENTIALS_FILE

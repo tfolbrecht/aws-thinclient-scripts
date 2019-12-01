@@ -1,0 +1,7 @@
+#!/bin/bash
+accountid=$(aws sts get-caller-identity | grep -Po '"Account": *\K"[^"]*"' | tr -d '"')
+echo $accountid
+
+# login page
+firefox https://$accountid.signin.aws.amazon.com/console/
+
