@@ -4,4 +4,3 @@ echo $accountid
 
 # login page
 firefox https://$accountid.signin.aws.amazon.com/console/
-
